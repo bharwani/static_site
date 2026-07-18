@@ -1,0 +1,133 @@
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# =========================
+# IDEs / Editors
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+*.iml
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.crt
+
+# =========================
+# Dependencies
+# =========================
+node_modules/
+vendor/
+
+# =========================
+# Build Output
+# =========================
+dist/
+build/
+out/
+target/
+bin/
+coverage/
+
+# =========================
+# Temporary Files
+# =========================
+tmp/
+temp/
+.cache/
+
+# =========================
+# Archives
+# =========================
+*.zip
+*.tar
+*.gz
+*.tgz
+
+# =========================
+# Package Manager
+# =========================
+package-lock.json
+yarn-error.log
+pnpm-debug.log
+yarn.lock
+pnpm-lock.yaml
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+
+# =========================
+# Go
+# =========================
+*.test
+coverage.out
+
+# =========================
+# Rust
+# =========================
+target/
+Cargo.lock
+# Keep Cargo.lock for applications, ignore for libraries
+
+# =========================
+# Java
+# =========================
+*.class
+.gradle/
+
+# =========================
+# Terraform
+# =========================
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+terraform.tfvars
+
+# =========================
+# Misc
+# =========================
+*.bak
+*.tmp
+CLAUDE.md
+.claude/
+AGENTS.md
+
+# =========================
+# Secrets
+# =========================
+.env
+.env.*
+*.pem
+*.key
+
+# =========================
+# API keys
+# =========================
+config.local.*
+secrets/
+credentials/

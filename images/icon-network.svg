@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="36" height="36" role="img" aria-label="Network services icon">
+  <circle cx="24" cy="24" r="4" fill="#e51937"/>
+  <circle cx="8" cy="10" r="3" fill="#e51937"/>
+  <circle cx="40" cy="10" r="3" fill="#e51937"/>
+  <circle cx="8" cy="38" r="3" fill="#e51937"/>
+  <circle cx="40" cy="38" r="3" fill="#e51937"/>
+  <g stroke="#e51937" stroke-width="1.8">
+    <line x1="24" y1="24" x2="8" y2="10"/>
+    <line x1="24" y1="24" x2="40" y2="10"/>
+    <line x1="24" y1="24" x2="8" y2="38"/>
+    <line x1="24" y1="24" x2="40" y2="38"/>
+  </g>
+</svg>

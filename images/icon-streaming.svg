@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="40" height="40" role="img" aria-label="Streaming media icon">
+  <rect x="6" y="10" width="36" height="24" rx="3" fill="none" stroke="#e51937" stroke-width="2.5"/>
+  <path d="M20 17l10 7-10 7V17Z" fill="#e51937"/>
+  <path d="M17 40h14" stroke="#e51937" stroke-width="2.5" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 460" width="560" height="460" role="img" aria-label="Global edge network illustration">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#ff4d63"/>
+      <stop offset="100%" stop-color="#e51937" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="560" height="460" fill="none"/>
+  <circle cx="280" cy="230" r="190" fill="url(#glow)" opacity="0.35"/>
+  <circle cx="280" cy="230" r="150" fill="none" stroke="#2a2a2a" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="280" cy="230" r="110" fill="none" stroke="#2a2a2a" stroke-width="1.5" opacity="0.5"/>
+  <circle cx="280" cy="230" r="70" fill="none" stroke="#2a2a2a" stroke-width="1.5" opacity="0.5"/>
+  <g stroke="#e51937" stroke-width="1.5" opacity="0.8">
+    <line x1="280" y1="230" x2="130" y2="120"/>
+    <line x1="280" y1="230" x2="430" y2="110"/>
+    <line x1="280" y1="230" x2="470" y2="300"/>
+    <line x1="280" y1="230" x2="150" y2="370"/>
+    <line x1="280" y1="230" x2="330" y2="380"/>
+  </g>
+  <g fill="#e51937">
+    <circle cx="280" cy="230" r="10"/>
+    <circle cx="130" cy="120" r="6"/>
+    <circle cx="430" cy="110" r="6"/>
+    <circle cx="470" cy="300" r="6"/>
+    <circle cx="150" cy="370" r="6"/>
+    <circle cx="330" cy="380" r="6"/>
+  </g>
+  <g fill="#0a0a0a">
+    <circle cx="130" cy="120" r="3"/>
+    <circle cx="430" cy="110" r="3"/>
+    <circle cx="470" cy="300" r="3"/>
+    <circle cx="150" cy="370" r="3"/>
+    <circle cx="330" cy="380" r="3"/>
+  </g>
+</svg>
