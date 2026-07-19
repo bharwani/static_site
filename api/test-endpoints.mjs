@@ -1,16 +1,29 @@
-// Hits every mocked endpoint through fetch() with a random query param, via `node api/test-endpoints.mjs`.
+// Hits every mocked endpoint over real HTTP, via `node api/test-endpoints.mjs`.
+// By default spins up its own instance of api/server.mjs on an ephemeral port and tears it down after.
+// Point at an already-running server instead with: node api/test-endpoints.mjs --base-url=http://localhost:8935
 // Volume test: node api/test-endpoints.mjs --requests=50  (or REQUESTS_PER_ENDPOINT=50 env var)
 import { parseArgs } from 'node:util';
-import { installFetchMock, matchRoute } from './mock.js';
-
-installFetchMock(globalThis);
+import { createMockServer, resolveKey, readData } from './server.mjs';
 
 const { values } = parseArgs({
-  options: { requests: { type: 'string', short: 'n' } },
+  options: {
+    requests: { type: 'string', short: 'n' },
+    'base-url': { type: 'string' },
+  },
   strict: false,
 });
 
 const REQUESTS_PER_ENDPOINT = Number(values.requests) || Number(process.env.REQUESTS_PER_ENDPOINT) || 1;
+
+let server;
+let baseUrl = values['base-url'];
+
+if (!baseUrl) {
+  server = createMockServer();
+  await new Promise((resolve) => server.listen(0, resolve));
+  baseUrl = `http://localhost:${server.address().port}`;
+  console.log(`Started mock server at ${baseUrl}`);
+}
 
 const rand = () => Math.floor(Math.random() * 1_000_000);
 
@@ -34,9 +47,9 @@ let total = 0;
 for (const { method, path } of ENDPOINTS) {
   for (let i = 0; i < REQUESTS_PER_ENDPOINT; i++) {
     total++;
-    const url = `${path}?r=${rand()}`;
+    const url = `${baseUrl}${path}?r=${rand()}`;
     const res = await fetch(url, { method });
-    const expected = matchRoute(path);
+    const expected = await readData(resolveKey(path));
     const body = await res.json();
 
     const ok = res.status === 200 && JSON.stringify(body) === JSON.stringify(expected);
@@ -44,6 +57,8 @@ for (const { method, path } of ENDPOINTS) {
     if (!ok) failures++;
   }
 }
+
+if (server) server.close();
 
 if (failures > 0) {
   console.error(`\n${failures}/${total} request(s) failed`);

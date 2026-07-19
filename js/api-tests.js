@@ -1,4 +1,6 @@
-import { matchRoute } from '../api/mock.js';
+// "Run API tests" button: fires real fetch() requests at the /api endpoints (same origin)
+// and logs pass/fail. Requests hit the network — watch them in DevTools' Network tab.
+// Needs a server that routes /api (run `node api/server.mjs`, then open http://localhost:8935/).
 
 const ENDPOINTS = [
   { method: 'GET', path: '/api/v1/1/items' },
@@ -51,10 +53,15 @@ btn.addEventListener('click', async () => {
   for (const { method, path } of ENDPOINTS) {
     for (let i = 0; i < count; i++) {
       const url = `${path}?r=${Math.floor(Math.random() * 1_000_000)}`;
-      const res = await fetch(url, { method });
-      const body = await res.json();
-      const expected = matchRoute(path);
-      const ok = res.status === 200 && JSON.stringify(body) === JSON.stringify(expected);
+      let ok = false;
+      let status = 0;
+      try {
+        const res = await fetch(url, { method });
+        status = res.status;
+        ok = res.ok;
+      } catch {
+        ok = false;
+      }
 
       if (ok) passed++;
       remaining--;
@@ -62,7 +69,7 @@ btn.addEventListener('click', async () => {
 
       const row = document.createElement('div');
       row.className = `api-test-row ${ok ? 'pass' : 'fail'}`;
-      row.textContent = `${ok ? 'PASS' : 'FAIL'} ${method} ${url}`;
+      row.textContent = `${ok ? 'PASS' : 'FAIL'} ${method} ${url} -> ${status}`;
       outputEl.appendChild(row);
     }
   }
