@@ -1,7 +1,7 @@
 # Server setup
 
 Runbook to install and serve this project on a Linux server (Debian/Ubuntu),
-behind nginx with HTTPS. Mirrors the live deploy on `gcp.ameet.info`.
+behind nginx with HTTPS. Mirrors the live deploy on `<server>`.
 
 Result: the Flask app (`app.py`) runs under **gunicorn** as a **systemd** service on
 `127.0.0.1:8935`, fronted by **nginx** which terminates TLS with a **Let's Encrypt**
@@ -78,7 +78,7 @@ sudo cp -r ~/website/css ~/website/js ~/website/images /var/www/fastly-site/
 ```
 
 **A. App under a path prefix** (site at `/site/`, API at `/api/`, another static root at `/`) —
-the `gcp.ameet.info` layout:
+the `<server>` layout:
 
 ```
 sudo tee /etc/nginx/conf.d/fastly-site.conf >/dev/null <<'CONF'

@@ -73,7 +73,7 @@ REQUESTS_PER_ENDPOINT=50 node api/test-endpoints.mjs   # same, via env var
 node api/test-endpoints.mjs --base-url=http://localhost:8935   # hit an already-running server
 python3 api/test_endpoints.py                    # Python twin, same flags (--requests / --base-url)
 python3 api/test_endpoints.py --port=8935        # target an already-running server (no spawn)
-python3 api/hit_endpoints.py gcp.ameet.info 5    # hit each endpoint 5x on a live domain (https by default; localhost/host:port -> http)
+python3 api/hit_endpoints.py <server> 5    # hit each endpoint 5x on a live domain (https by default; localhost/host:port -> http)
 ```
 
 ## Docker
@@ -87,7 +87,7 @@ docker run -p 8935:8935 fastly-site      # http://localhost:8935/api/
 
 ## Deployment
 
-Live at **https://gcp.ameet.info/site/** — the API is at **https://gcp.ameet.info/api/**. (`/site` redirects to `/site/`; bare `/` serves static files from `/var/www/html`.)
+Live at **https://<server>/site/** — the API is at **https://<server>/api/**. (`/site` redirects to `/site/`; bare `/` serves static files from `/var/www/html`.)
 
 Stack on the server: **nginx** serves the static assets (html/css/js/images) directly from `/var/www/fastly-site` and terminates TLS on `:443` with a **Let's Encrypt** cert (`certbot --nginx`, auto-renewed by `certbot.timer`). Only `/api` is reverse-proxied to **gunicorn** (systemd unit `fastly-site`, venv, `127.0.0.1:8935`). Port 80 redirects to 443. nginx serves the page under `/site/` and the mock under `/api/`.
 
@@ -96,8 +96,8 @@ Full server install/setup runbook: **[SETUP.md](SETUP.md)**.
 Redeploy after code changes:
 
 ```
-rsync -az --exclude '.git' --exclude '.venv' ./ gcp.ameet.info:~/website/
-ssh gcp.ameet.info 'cd ~/website && .venv/bin/pip install -q -r requirements.txt && sudo systemctl restart fastly-site'
+rsync -az --exclude '.git' --exclude '.venv' ./ <server>:~/website/
+ssh <server> 'cd ~/website && .venv/bin/pip install -q -r requirements.txt && sudo systemctl restart fastly-site'
 ```
 
 ## Notes
