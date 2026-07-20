@@ -14,6 +14,9 @@ const ENDPOINTS = [
   { method: 'PUT', path: '/api/v2/users/user-42/update' },
   { method: 'GET', path: '/api/v2/users/user-42/read' },
   { method: 'DELETE', path: '/api/v2/users/user-42/delete' },
+  { method: 'HEAD', path: '/api' },
+  { method: 'OPTIONS', path: '/api' },
+  { method: 'PATCH', path: '/api' },
 ];
 
 const btn = document.getElementById('runApiTestsBtn');

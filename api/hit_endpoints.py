@@ -26,6 +26,10 @@ ENDPOINTS = [
     ("PUT", "/api/v2/users/user-42/update"),
     ("GET", "/api/v2/users/user-42/read"),
     ("DELETE", "/api/v2/users/user-42/delete"),
+    ("HEAD", "/api"),
+    ("OPTIONS", "/api"),
+    ("PATCH", "/api"),
+    ("TRACE", "/api"),
 ]
 
 

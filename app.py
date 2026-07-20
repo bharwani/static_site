@@ -32,13 +32,16 @@ def resolve_key(path):
     return None
 
 
-@app.route("/api", methods=["GET", "POST", "PUT", "DELETE"])
-@app.route("/api/", methods=["GET", "POST", "PUT", "DELETE"])
+METHODS = ["GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS", "PATCH", "TRACE"]
+
+
+@app.route("/api", methods=METHODS)
+@app.route("/api/", methods=METHODS)
 def api_root():
     return jsonify(message="API endpoints")
 
 
-@app.route("/api/<path:subpath>", methods=["GET", "POST", "PUT", "DELETE"])
+@app.route("/api/<path:subpath>", methods=METHODS)
 def api(subpath):
     key = resolve_key(f"/api/{subpath}")
     if key and (API_DIR / key).is_file():
